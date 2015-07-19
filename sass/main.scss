@@ -1,0 +1,22 @@
+/**
+ *
+ * More info about this architecture can be found here:
+ * http://www.sitepoint.com/architecture-sass-project/
+ *
+ */
+ 
+// Vendors and external stylesheets
+@import "bourbon/bourbon";
+@import "neat/neat";
+ 
+$max-width: 1024px;
+ 
+$gutter: golden-ratio(1em, 0);
+	
+// utilities
+@import "helpers/functions";
+@import "helpers/mixins";
+@import "helpers/helpers";
+
+// Base stuff
+@import "base/base";

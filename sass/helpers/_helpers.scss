@@ -1,0 +1,46 @@
+.border-box{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clear {
+  	clear: both;
+	@include clearfix;  
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide-text {
+	text-indent: 100%;
+	font-size: 0;
+	white-space: nowrap;
+	overflow: hidden;
+//	@include hide-text;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}

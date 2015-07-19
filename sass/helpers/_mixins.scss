@@ -1,0 +1,122 @@
+@mixin rc($radius: 0.5em) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin transition($transition-time, $transition-property: all , $method: ease-in-out) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+
+@mixin desaturate($percentage: 10) {
+	filter: grayscale(percentage($percentage));
+	-webkit-filter: grayscale(percentage($percentage));
+	-moz-filter: grayscale(percentage($percentage));
+	-ms-filter: grayscale(percentage($percentage));
+	-o-filter: grayscale(percentage($percentage));
+	filter: url(/_assets/images/desaturate.svg#greyscale);
+	filter: gray;
+	-webkit-filter: grayscale($percentage/10);
+}
+
+@mixin opacity($opacity: 100) {
+	opacity: $opacity / 100;
+	filter: unquote("alpha(opacity=#{$opacity * 100})"); 
+}
+
+@mixin placeholder($color: black, $text-transform : capitalize) {
+    ::-webkit-input-placeholder {
+        color: $color;
+        text-transform: $text-transform;
+    }
+    :-moz-placeholder {
+        color: $color;
+        text-transform: $text-transform;
+    }
+    ::-moz-placeholder {
+        color: $color;
+        text-transform: $text-transform;
+    }
+    :-ms-input-placeholder {
+        color: $color;
+        text-transform: $text-transform;
+    }
+}
+
+$media: screen;
+$feature: min-width;
+@mixin mq($breakpoint) {
+    @if $breakpoint == mp { // mobile portrait
+        @media #{$media} and ($feature: 320px) {
+            @content;
+        }
+    } @else if $breakpoint == ml { // mobile landscape
+        @media #{$media} and ($feature: 480px) {
+            @content;
+        }
+    } @else if $breakpoint == n { // note
+        @media #{$media} and ($feature: 643px) {
+            @content;
+        }
+    } @else if $breakpoint == fb { // facebook duh!
+        @media #{$media} and ($feature: 800px) {
+            @content;
+        }
+    }
+}
+
+@mixin fontface($face, $font) {
+	@font-face {
+		font-family: '#{$face}';
+		src: url('../fonts/#{$font}.eot');
+		src: url('../fonts/#{$font}?#iefix') format('embedded-opentype'),
+			 url('../fonts/#{$font}.woff2') format('woff2'),
+			 url('../fonts/#{$font}.woff') format('woff'),
+			 url('../fonts/#{$font}.ttf') format('truetype'),
+			 url('../fonts/#{$font}.svg##{$face}') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+}
+
+@mixin height($percentage) {
+	height: 0;
+	padding-bottom: $percentage;
+}
+
+@mixin grid($cols, $device) {
+	@media (min-width:#{$device}) { @include span-columns($cols); }
+}
+
+@mixin tile-fix {
+	.tile-wrapper { @include margin(null null 1.61735% null); }
+	&> .tile-wrapper:nth-child(2n) {
+		@media (max-width:$tablet) {		
+	  		margin-right: 0;																		
+		}
+	}	
+}
+
+@mixin link-button {
+	@include appearance(none);
+	-webkit-font-smoothing: antialiased;
+	background-color: transparent;
+	//border-radius: $base-border-radius;
+	border: $base-border;
+	color: $black;
+	cursor: pointer;
+	display: inline-block;
+	font-family: $amsi-nar-sembold;
+	font-size: $base-font-size;
+	text-transform: uppercase;
+	line-height: 1;
+	padding: 0.75em 1em;
+	text-decoration: none;
+	user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+}
